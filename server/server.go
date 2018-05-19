@@ -22,10 +22,8 @@ func (s HarryServer) GetSpell(ctx context.Context, spell *proto.SpellName) (*pro
 }
 
 func (s HarryServer) GetRandomSpell(ctx context.Context, empty *google_protobuf.Empty) (*proto.Spell, error) {
-	sp, err := spells.RandomSpells(1)[0]
-	if err != nil {
-		return err
-	}
+	sp := spells.RandomSpells(1)[0]
+
 	return &proto.Spell{
 		Name:   sp.Name,
 		Type:   sp.Type,
@@ -33,14 +31,12 @@ func (s HarryServer) GetRandomSpell(ctx context.Context, empty *google_protobuf.
 }
 
 func (s HarryServer) GetRandomSpells(ctx context.Context, howMany *proto.RandomSpellsNumber) (*proto.SpellsList, error) {
-	sp, err := spells.RandomSpells(howMany)
-	if err != nil {
-		return nil, err
-	}
-	res = proto.SpellsList
-	res.Spell := make([]Spell*, len(sp))
-	for indx, spell := range sp {
-		res.Spell[indx] = &proto.Spell{
+	spellList := spells.RandomSpells(int(howMany.HowMany))
+
+	var res proto.SpellsList
+	res.Spells = make([](*proto.Spell), len(spellList))
+	for indx, spell := range spellList {
+		res.Spells[indx] = &proto.Spell{
 			Name:   spell.Name,
 			Type:   spell.Type,
 			Effect: spell.Effect}
