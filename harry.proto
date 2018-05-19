@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package protospell;
+
+import "google/protobuf/empty.proto";
+
+
+service HarryPotterSpells {
+    rpc GetSpell(SpellName) returns (Spell) {}
+    rpc GetRandomSpell(google.protobuf.Empty) returns (Spell) {}
+    rpc GetRandomSpells(RandomSpellsNumber) returns (SpellsList) {}
+}
+
+message SpellName {
+    string name = 1;
+}
+
+message Spell {
+    string name = 1;
+    string type = 2;
+    string effect = 3;
+}
+
+message RandomSpellsNumber {
+    int32 howMany = 1;
+}
+
+message SpellsList {
+    repeated Spell spells = 1;
+}
