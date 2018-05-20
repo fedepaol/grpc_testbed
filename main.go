@@ -13,8 +13,8 @@ func main() {
 	clientMode := flag.Bool("client", false, "client mode")
 
 	if *clientMode {
-		harryClient.Run(*serverHost)
+		client.Run(*serverHost)
 	} else {
-		SpellsServer.RunServer(*serverPort)
+		server.Run(*serverPort)
 	}
 }

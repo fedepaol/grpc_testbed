@@ -1,4 +1,4 @@
-package harryClient
+package client
 
 import (
 	"context"

@@ -1,4 +1,4 @@
-package SpellsServer
+package server
 
 import (
 	"context"
@@ -13,8 +13,8 @@ import (
 type harryServer struct {
 }
 
-// RunServer runs a the harry potter spells grpc server.
-func RunServer(port int) error {
+// Run runs a the harry potter spells grpc server.
+func Run(port int) error {
 	lis, err := net.Listen("tcp", string(port))
 	if err != nil {
 		return err
