@@ -1,4 +1,4 @@
-package spellsServer
+package SpellsServer
 
 import (
 	"context"
