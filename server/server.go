@@ -14,8 +14,8 @@ type harryServer struct {
 }
 
 // Run runs a the harry potter spells grpc server.
-func Run(port int) error {
-	lis, err := net.Listen("tcp", string(port))
+func Run(listenHost string) error {
+	lis, err := net.Listen("tcp", listenHost)
 	if err != nil {
 		return err
 	}
